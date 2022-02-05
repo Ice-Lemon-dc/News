@@ -8,3 +8,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "News"
 include ':app'
+include ':base'
+include ':news'
