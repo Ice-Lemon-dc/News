@@ -1,5 +1,6 @@
-apply from: rootProject.file('cc-settings-2.gradle')
-
+plugins {
+    id 'com.android.library'
+}
 android {
     compileSdk rootProject.compileSdkVersion
 
@@ -21,9 +22,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
 
     implementation "com.google.android.material:material:$rootProject.androidXVersion"
+    implementation project(path: ':base')
 }

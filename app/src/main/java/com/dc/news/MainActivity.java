@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.dc.base.activity.BaseActivity;
 import com.dc.base.viewmodel.BaseViewModel;
 import com.dc.news.databinding.ActivityMainBinding;
-import com.dc.news.homefragment.HomeFragment;
 import com.dc.news.otherfragments.AccountFragment;
 import com.dc.news.otherfragments.CategoryFragment;
 import com.dc.news.otherfragments.ServiceFragment;
@@ -21,10 +21,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import q.rorbin.badgeview.QBadgeView;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> {
-    private HomeFragment mHomeFragment = new HomeFragment();
-    private CategoryFragment mCategoryFragment = new CategoryFragment();
-    private ServiceFragment mServiceFragment = new ServiceFragment();
-    private AccountFragment mAccountFragment = new AccountFragment();
+    private Fragment mHomeFragment;
+    private final CategoryFragment mCategoryFragment = new CategoryFragment();
+    private final ServiceFragment mServiceFragment = new ServiceFragment();
+    private final AccountFragment mAccountFragment = new AccountFragment();
 
     Fragment fromFragment;
 
@@ -47,6 +47,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mHomeFragment = (Fragment) ARouter.getInstance().build("/news/HeadlineNewsFragment").navigation();
         fromFragment = mHomeFragment;
 
         setSupportActionBar(viewDataBinding.toolbar);

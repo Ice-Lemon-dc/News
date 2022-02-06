@@ -1,6 +1,6 @@
 package com.dc.news.application;
 
-import com.billy.cc.core.component.CC;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.dc.base.BaseApplication;
 import com.dc.base.BuildConfig;
 import com.dc.base.loadsir.CustomCallback;
@@ -18,16 +18,20 @@ public class NewsApplication extends BaseApplication {
         setDebug(BuildConfig.DEBUG);
 
         LoadSir.beginBuilder()
-                .addCallback(new ErrorCallback())//添加各种状态页
+                //添加各种状态页
+                .addCallback(new ErrorCallback())
                 .addCallback(new EmptyCallback())
                 .addCallback(new LoadingCallback())
                 .addCallback(new TimeoutCallback())
                 .addCallback(new CustomCallback())
-                .setDefaultCallback(LoadingCallback.class)//设置默认状态页
+                //设置默认状态页
+                .setDefaultCallback(LoadingCallback.class)
                 .commit();
 
-        CC.enableDebug(BuildConfig.DEBUG);
-        CC.enableVerboseLog(BuildConfig.DEBUG);
-        CC.enableRemoteCC(BuildConfig.DEBUG);
+        if (BuildConfig.DEBUG) {
+            ARouter.openDebug();
+            ARouter.openLog();
+        }
+        ARouter.init(this);
     }
 }

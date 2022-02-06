@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModel;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.dc.base.loadsir.EmptyCallback;
 import com.dc.base.loadsir.ErrorCallback;
 import com.dc.base.loadsir.LoadingCallback;
