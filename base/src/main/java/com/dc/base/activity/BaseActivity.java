@@ -29,13 +29,29 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
     int getLayoutId();
 
     protected abstract VM getViewModel();
-    public abstract int getBindingVariable();
 
+    public abstract int getBindingVariable();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initViewModel();
         performDataBinding();
+    }
+
+    private void initViewModel() {
+        viewModel = getViewModel();
+        if (viewModel != null) {
+            viewModel.attachUI(this);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (viewModel != null && viewModel.isUIAttached()) {
+            viewModel.detachUI();
+        }
     }
 
     protected void onRetryBtnClick() {

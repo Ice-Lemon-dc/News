@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 
-public class BaseViewModel <V> extends ViewModel implements IBaseViewModel<V> {
+public class BaseViewModel<V> extends ViewModel implements IBaseViewModel<V> {
     private Reference<V> mUIRef;
 
     @Override
